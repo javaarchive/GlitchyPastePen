@@ -18,15 +18,3 @@ fetch("/projectname", {
 
 console.log(":)");
 
-const login = () => {
-  let username = document.getElementById("username").value;
-  let password = document.getElementById("password").value;
-  let content = { username: username, password: password };
-  fetch("/auth", {
-    method: "post",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(content)
-  });
-};

@@ -55,7 +55,7 @@ app.post("/auth", async function(request, response) {
       if (pass === password) {
         request.session.loggedin = true;
         request.session.username = username;
-        response.redirect("/home");
+        response.redirect("/editor");
       } else {
         response.send("Incorrect Username and/or Password!");
       }
@@ -64,6 +64,15 @@ app.post("/auth", async function(request, response) {
       response.redirect("/signup");
     }
   }
+});
+
+app.get('/editor', function(request, response) {
+	if (request.session.loggedin) {
+		response.sendFile(__dirname + "/views/editor.html");
+	} else {
+		response.redirect("/");
+	}
+	response.end();
 });
 
 // listen for requests :)
