@@ -8,6 +8,11 @@ const app = express();
 
 var randomize = require('randomatic');
 
+var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(express.json());
+
 app.use(express.static("public"));
 
 app.get("/", (request, response) => {
@@ -16,7 +21,8 @@ app.get("/", (request, response) => {
 
 app.get("/projectname", (req, res) => {
   let name = randomize('Aa0', 10);
-  res.send(name);
+  let data = { name: name };
+  res.send(data);
 })
 
 // listen for requests :)

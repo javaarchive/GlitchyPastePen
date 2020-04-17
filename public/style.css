@@ -1,4 +1,20 @@
+@import url('https://rsms.me/inter/inter.css');
+
 body {
   background-color: #272822;
   color: white;
+  font-family: "Inter", "Helvetica", "Arial", sans-serif;
+}
+
+#project-name {
+  margin-left: 20px;
+  margin-top: 0px;
+  background-color: #272822;
+  border: none;
+  
+}
+
+p {
+  margin-bottom: 0px;
+  margin-left: 20px;
 }

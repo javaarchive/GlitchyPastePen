@@ -1,4 +1,5 @@
-const createEditor = (editor, options = {}) => {
+(function() {
+  const createEditor = (editor, options = {}) => {
   const e = new document.CodeMirror.fromTextArea(editor, {
     lineNumbers: true,
     viewportMargin: Infinity,
@@ -13,13 +14,15 @@ var editor = createEditor(document.getElementById("editor"), {
   theme: "monokai"
 });
 
-window.onload = function() {
+
   
-  fetch('/projectname')
-  .then(response => response.json())
-  .then(data => {
+  fetch('/projectname', {
+    headers: { "Content-Type": "application/json" }
+  })
+    .then(response => response.json())
+    .then(data => {
     let name = document.getElementById("project-name");
-    name.innerText = data;
+    name.innerText = data.name;
   });
   
-}
+})();
