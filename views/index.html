@@ -42,6 +42,7 @@
         mode: "javascript",
         theme: "monokai"
       });
+      document.getElementsByClassName("CodeMirror")[0].oninput = save();
       function save() {
         console.log("SAVE!!!");
         let code = editor.getValue();
