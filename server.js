@@ -18,6 +18,7 @@ app.use(express.json());
 
 const endb = require("endb");
 var user = new endb("sqlite://user.db");
+var project = new endb("sqlite://project.db");
 
 app.use(express.static("public"));
 
@@ -115,6 +116,8 @@ app.post("/deploy", async function(request, response) {
   fs.writeFile(filename, request.body.code, function(err) {
     if (err) throw err;
   });
+  let projectinfo = { name: request.body.name, owner: global.theuser };
+  let setinfo = await project.set(request.body.name, )
   let userinfo = await user.get(global.theuser);
   let projects = userinfo.projects;
   let newprojects = projects.push(request.body.name);
