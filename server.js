@@ -60,9 +60,7 @@ app.post("/signup", async (request, response) => {
 });
 
 app.get("/projectname", (req, res) => {
-  let name = randomize("Aa0", 10);
-  let data = { name: name };
-  res.send(data);
+  
 });
 
 app.post("/auth", async function(request, response) {
@@ -81,7 +79,11 @@ app.post("/auth", async function(request, response) {
         request.session.loggedin = true;
         request.session.username = global.username;
         global.theuser = request.session.username;
-        authdata = { redirect: "editor", detail: "loggedin", user: global.username };
+        authdata = {
+          redirect: "editor",
+          detail: "loggedin",
+          user: global.username
+        };
         response.send(authdata);
         // response.redirect("/editor");
       } else {
@@ -98,7 +100,28 @@ app.post("/auth", async function(request, response) {
   }
 });
 
-app.get("/editor", function(request, response) {
+app.get("/editor/new", async (req, res) => {
+  let projectname = randomize("Aa0", 10);
+  // let data = { name: name };
+  fs.writeFile(`${projectname}.html`, "", function(err) {
+    if (err) throw err;
+  });
+  let projectinfo = { name: projectname, owner: global.theuser };
+  let setinfo = await project.set(projectname, projectinfo);
+  let userinfo = await user.get(global.theuser);
+  let projects = userinfo.projects;
+  let newprojects = projects.push(projectname);
+  let userobj = {
+    password: global.password,
+    email: global.email,
+    projects: projects
+  };
+  console.log("New projects:");
+  console.log(projects);
+  res.redirect
+})
+
+app.get("/editor/:project", function(request, response) {
   if (request.session.loggedin) {
     response.sendFile(__dirname + "/views/editor.html");
     console.log(global.theuser);
@@ -110,9 +133,15 @@ app.get("/editor", function(request, response) {
 app.get("/edit/:project", async function(request, response) {
   let hasproject = await project.has(request.params.project);
   if (!hasproject) {
-    
+    response.redirect("/editor");
+  } else {
+    let projectinfo = await project.get(request.params.project);
+    let owner = projectinfo.owner;
+    if (request.session.username === owner) {
+      
+    }
   }
-}) 
+});
 
 app.post("/deploy", async function(request, response) {
   let projectname = request.body.name;
@@ -125,8 +154,12 @@ app.post("/deploy", async function(request, response) {
   let userinfo = await user.get(global.theuser);
   let projects = userinfo.projects;
   let newprojects = projects.push(request.body.name);
-  let userobj = { password: global.password, email: global.email, projects: projects }
-  console.log("New projects:")
+  let userobj = {
+    password: global.password,
+    email: global.email,
+    projects: projects
+  };
+  console.log("New projects:");
   console.log(projects);
   response.send({ status: 200 });
 });
