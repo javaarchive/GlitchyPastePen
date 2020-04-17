@@ -29,7 +29,7 @@ app.use(
   })
 );
 
-app.get("/", (request, response) => {
+app.get("/", async (request, response) => {
   response.sendFile(__dirname + "/views/login.html");
 });
 
@@ -72,7 +72,7 @@ app.post("/auth", async function(request, response) {
     let hasuser = await user.has(username);
     if (hasuser) {
       let pass = await user.get(username);
-      console.log(pass);
+      console.log(pass.projects);
       pass = pass.password;
       console.log(pass);
       console.log(password);
@@ -106,13 +106,19 @@ app.get("/editor", function(request, response) {
   }
 });
 
+app.get("/edit/:project", function(request, response) {
+  
+}) 
+
 app.post("/deploy", async function(request, response) {
   let filename = request.body.name + ".html";
   fs.writeFile(filename, request.body.code, function(err) {
     if (err) throw err;
   });
   let userinfo = await user.get(global.theuser);
-  userinfo.projects.push(request.body.name);
+  let projects = userinfo.projects;
+  let newprojects = projects.push(request.body.name);
+  console.log(newprojects);
   response.send({ status: 200 });
 });
 
