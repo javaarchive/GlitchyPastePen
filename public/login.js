@@ -22,5 +22,7 @@ const login = () => {
         console.log("yo!")
       }
     
+      let username = data.username;
+    
     });
 };

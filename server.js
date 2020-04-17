@@ -79,7 +79,8 @@ app.post("/auth", async function(request, response) {
       if (pass === password) {
         request.session.loggedin = true;
         request.session.username = username;
-        authdata = { redirect: "editor", detail: "loggedin", user: u };
+        global.theuser = request.session.username;
+        authdata = { redirect: "editor", detail: "loggedin", user: username };
         response.send(authdata);
         // response.redirect("/editor");
       } else {
@@ -99,6 +100,7 @@ app.post("/auth", async function(request, response) {
 app.get("/editor", function(request, response) {
   if (request.session.loggedin) {
     response.sendFile(__dirname + "/views/editor.html");
+    console.log(global.theuser);
   } else {
     response.redirect("/");
   }
