@@ -118,7 +118,7 @@ app.get("/editor/new", async (req, res) => {
   };
   console.log("New projects:");
   console.log(projects);
-  res.redirect
+  res.redirect(`/editor/${projectname}`)
 })
 
 app.get("/editor/:project", function(request, response) {
@@ -130,18 +130,18 @@ app.get("/editor/:project", function(request, response) {
   }
 });
 
-app.get("/edit/:project", async function(request, response) {
-  let hasproject = await project.has(request.params.project);
-  if (!hasproject) {
-    response.redirect("/editor");
-  } else {
-    let projectinfo = await project.get(request.params.project);
-    let owner = projectinfo.owner;
-    if (request.session.username === owner) {
+// app.get("/edit/:project", async function(request, response) {
+//   let hasproject = await project.has(request.params.project);
+//   if (!hasproject) {
+//     response.redirect("/editor");
+//   } else {
+//     let projectinfo = await project.get(request.params.project);
+//     let owner = projectinfo.owner;
+//     if (request.session.username === owner) {
       
-    }
-  }
-});
+//     }
+//   }
+// });
 
 app.post("/deploy", async function(request, response) {
   let projectname = request.body.name;
@@ -163,6 +163,13 @@ app.post("/deploy", async function(request, response) {
   console.log(projects);
   response.send({ status: 200 });
 });
+
+app.get("/getCode/:projectname", async (req, res) => {
+  let projectname = req.params.projectname;
+  fs.readFile(`${projectname}.html`, function(err, data) {
+    res.send({ code: data });
+  });
+})
 
 app.get("/p/:project", function(req, res) {
   let projectname = req.params.project;

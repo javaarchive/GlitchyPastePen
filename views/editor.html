@@ -25,11 +25,8 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/codemirror@5.52.2/theme/monokai.css"
     />
-<!--     // https://codemirror.net/addon/lint/lint.css -->
-    <link
-      rel="stylesheet"
-      href="https://codemirror.net/addon/lint/lint.css"
-    />
+    <!--     // https://codemirror.net/addon/lint/lint.css -->
+    <link rel="stylesheet" href="https://codemirror.net/addon/lint/lint.css" />
     <script src="https://cdn.jsdelivr.net/npm/codemirror@5.52.2/lib/codemirror.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/codemirror@5.52.2/mode/javascript/javascript.js"></script>
     <script src="https://codemirror.net/mode/javascript/javascript.js"></script>
@@ -71,6 +68,14 @@
         lint: true,
         theme: "monokai"
       });
+
+      let name = document.getElementById("project-name").value;
+      fetch(`/getCode/${name}`)
+        .then(response => response.json())
+        .then(data => {
+          editor.setValue(data);
+        });
+
       function deploy() {
         let code = editor.getValue();
         let name = document.getElementById("project-name").value;
