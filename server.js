@@ -35,11 +35,24 @@ app.get("/", (request, response) => {
 //   response.sendFile(__dirname + "/views/login.html");
 // });
 
-app.get("/signup", (request, response) => {
+app.get("/signup", async (request, response) => {
+  response.sendFile(__dirname + "/views/signup.html");
+});
+
+app.post("/signup", async (request, response) => {
+  var authdata;
   var email = request.body.username;
   var username = request.body.username;
-  var passowrd = request.body.username;
-  if (username && password )
+  var password = request.body.username;
+  if (username && password && email) {
+    let hasuser = await user.has(username);
+    if (!hasuser) {
+      let userinfo = { password: password, email: email, projects: {} };
+      let newuser = await user.set(username, userinfo);
+      authdata = { redirect: "/", detail: "newuser" };
+      response.send(authdata);
+    }
+  }
 });
 
 app.get("/projectname", (req, res) => {
@@ -59,30 +72,30 @@ app.post("/auth", async function(request, response) {
       if (pass === password) {
         request.session.loggedin = true;
         request.session.username = username;
-        authdata = { redirect: "editor" };
+        authdata = { redirect: "editor", detail: "loggedin" };
         response.send(authdata);
         // response.redirect("/editor");
       } else {
         // response.send("Incorrect Username and/or Password!");
-        authdata = { redirect: "/" };
+        authdata = { redirect: "/", detail: "wronginfo" };
         response.send(authdata);
       }
       response.end();
     } else {
       // esponse.redirect('/signup');
-      authdata = { redirect: "signup" };
+      authdata = { redirect: "signup", detail: "noaccount" };
       response.send(authdata);
     }
   }
 });
 
-app.get('/editor', function(request, response) {
-	if (request.session.loggedin) {
-		response.sendFile(__dirname + "/views/editor.html");
-	} else {
-		response.redirect("/");
-	}
-	response.end();
+app.get("/editor", function(request, response) {
+  if (request.session.loggedin) {
+    response.sendFile(__dirname + "/views/editor.html");
+  } else {
+    response.redirect("/");
+  }
+  response.end();
 });
 
 // listen for requests :)
