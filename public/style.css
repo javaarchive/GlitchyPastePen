@@ -73,4 +73,5 @@ p {
   padding-bottom: 10px;
   padding-right: 20px;
   border-radius: 9px;
+  cursor: pointer;
 }
