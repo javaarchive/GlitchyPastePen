@@ -43,7 +43,7 @@ app.post("/signup", async (request, response) => {
   var authdata;
   var email = request.body.username;
   var username = request.body.username;
-  var password = request.body.username;
+  var password = request.body.password;
   if (username && password && email) {
     let hasuser = await user.has(username);
     if (!hasuser) {
@@ -51,6 +51,8 @@ app.post("/signup", async (request, response) => {
       let newuser = await user.set(username, userinfo);
       authdata = { redirect: "/", detail: "newuser" };
       response.send(authdata);
+    } else {
+      
     }
   }
 });
@@ -68,7 +70,11 @@ app.post("/auth", async function(request, response) {
   if (username && password) {
     let hasuser = await user.has(username);
     if (hasuser) {
-      let pass = await endb.get(username);
+      let pass = await user.get(username);
+      console.log(pass);
+      pass = pass.password; 
+      console.log(pass)
+      console.log(password)
       if (pass === password) {
         request.session.loggedin = true;
         request.session.username = username;
@@ -95,7 +101,6 @@ app.get("/editor", function(request, response) {
   } else {
     response.redirect("/");
   }
-  response.end();
 });
 
 // listen for requests :)
