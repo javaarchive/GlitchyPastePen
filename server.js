@@ -36,7 +36,10 @@ app.get("/", (request, response) => {
 // });
 
 app.get("/signup", (request, response) => {
-  response.sendFile(__dirname + "/views/signup.html");
+  var email = request.body.username;
+  var username = request.body.username;
+  var passowrd = request.body.username;
+  if (username && password )
 });
 
 app.get("/projectname", (req, res) => {
@@ -57,13 +60,18 @@ app.post("/auth", async function(request, response) {
         request.session.loggedin = true;
         request.session.username = username;
         authdata = { redirect: "editor" };
+        response.send(authdata);
         // response.redirect("/editor");
       } else {
-        response.send("Incorrect Username and/or Password!");
+        // response.send("Incorrect Username and/or Password!");
+        authdata = { redirect: "/" };
+        response.send(authdata);
       }
       response.end();
     } else {
-      response.redirect('/signup');
+      // esponse.redirect('/signup');
+      authdata = { redirect: "signup" };
+      response.send(authdata);
     }
   }
 });

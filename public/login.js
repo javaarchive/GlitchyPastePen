@@ -11,6 +11,16 @@ const login = () => {
   })
     .then(response => response.json())
     .then(data => {
-      console.log(data);
+      
+      if (data.redirect == "signup") {
+        window.location.href = "https://small-glitch.glitch.me/signup";
+      } else if (data.redirect == "editor") {
+        window.location.href = "https://small-glitch.glitch.me/editor";
+      } else if (data.redirect == "/") {
+        window.location.href = "https://small-glitch.glitch.me/";
+      } else {
+        console.log("yo!")
+      }
+    
     });
 };
