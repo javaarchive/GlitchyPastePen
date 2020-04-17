@@ -105,11 +105,15 @@ app.get("/editor", function(request, response) {
 });
 
 app.post("/deploy", function(request, response) {
-  let filename = request.body.name + "/" + "index.html";
+  let filename = request.body.name + ".html";
   fs.writeFile(filename, request.body.code, function(err) {
     if (err) throw err;
-    response.sendStatus(200);
   });
+  response.send({ status: 200 });
+});
+
+app.get("/:project", function(req, res) {
+  
 });
 
 // listen for requests :)
