@@ -46,6 +46,7 @@ app.get("/projectname", (req, res) => {
 });
 
 app.post("/auth", async function(request, response) {
+  var authdata;
   var username = request.body.username;
   var password = request.body.password;
   if (username && password) {
@@ -55,13 +56,14 @@ app.post("/auth", async function(request, response) {
       if (pass === password) {
         request.session.loggedin = true;
         request.session.username = username;
-        response.redirect("/editor");
+        authdata = { redirect: "editor" };
+        // response.redirect("/editor");
       } else {
         response.send("Incorrect Username and/or Password!");
       }
       response.end();
     } else {
-      response.redirect("/signup");
+      response.redirect('/signup');
     }
   }
 });

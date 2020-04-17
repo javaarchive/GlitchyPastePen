@@ -8,5 +8,9 @@ const login = () => {
       "Content-Type": "application/json"
     },
     body: JSON.stringify(content)
-  });
+  })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+    });
 };
