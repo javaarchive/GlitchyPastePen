@@ -1,4 +1,4 @@
-(function() {
+
   const createEditor = (editor, options = {}) => {
   const e = new document.CodeMirror.fromTextArea(editor, {
     lineNumbers: true,
@@ -22,7 +22,6 @@ var editor = createEditor(document.getElementById("editor"), {
     .then(response => response.json())
     .then(data => {
     let name = document.getElementById("project-name");
-    name.innerText = data.name;
+    name.value = data.name;
   });
   
-})();

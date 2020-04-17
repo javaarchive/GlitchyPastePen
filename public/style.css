@@ -11,7 +11,13 @@ body {
   margin-top: 0px;
   background-color: #272822;
   border: none;
-  
+  color: white;
+  font-family: "Inter", "Helvetica", "Arial", sans-serif;
+  height: 35px;
+  font-size: 30px;
+  resize: none;
+  overflow-y: hidden;
+  outline: none;
 }
 
 p {
