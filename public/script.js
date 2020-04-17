@@ -10,5 +10,16 @@ const createEditor = (editor, options = {}) => {
 document.CodeMirror = CodeMirror;
 var editor = createEditor(document.getElementById("editor"), {
   mode: "javascript",
-  theme: "ayu-mirage"
+  theme: "monokai"
 });
+
+window.onload = function() {
+  
+  fetch('/projectname')
+  .then(response => response.json())
+  .then(data => {
+    let name = document.getElementById("project-name");
+    name.innerText = data;
+  });
+  
+}
