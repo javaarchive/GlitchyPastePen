@@ -49,7 +49,7 @@ app.post("/signup", async (request, response) => {
   if (username && password && email) {
     let hasuser = await user.has(username);
     if (!hasuser) {
-      let userinfo = { password: password, email: email, projects: {} };
+      let userinfo = { password: password, email: email, projects: [] };
       let newuser = await user.set(username, userinfo);
       authdata = { redirect: "/", detail: "newuser" };
       response.send(authdata);
@@ -106,15 +106,17 @@ app.get("/editor", function(request, response) {
   }
 });
 
-app.post("/deploy", function(request, response) {
+app.post("/deploy", async function(request, response) {
   let filename = request.body.name + ".html";
   fs.writeFile(filename, request.body.code, function(err) {
     if (err) throw err;
   });
+  let userinfo = await user.get(global.theuser);
+  userinfo.projects.push(request.body.name);
   response.send({ status: 200 });
 });
 
-app.get("/:project", function(req, res) {
+app.get("/p/:project", function(req, res) {
   let projectname = req.params.project;
   res.sendFile(__dirname + "/" + projectname + ".html");
 });
