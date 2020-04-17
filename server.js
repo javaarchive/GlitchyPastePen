@@ -79,7 +79,7 @@ app.post("/auth", async function(request, response) {
       if (pass === password) {
         request.session.loggedin = true;
         request.session.username = username;
-        authdata = { redirect: "editor", detail: "loggedin" };
+        authdata = { redirect: "editor", detail: "loggedin", user: u };
         response.send(authdata);
         // response.redirect("/editor");
       } else {
@@ -113,7 +113,8 @@ app.post("/deploy", function(request, response) {
 });
 
 app.get("/:project", function(req, res) {
-  
+  let projectname = req.params.project;
+  res.sendFile(__dirname + "/" + projectname + ".html");
 });
 
 // listen for requests :)
