@@ -1,15 +1,18 @@
 @import url('https://rsms.me/inter/inter.css');
 
 body {
-  background-color: #272822;
+  --fore: white;
+  --back: #272822;
+  background-color: var(--back);
   color: white;
   font-family: "Inter", "Helvetica", "Arial", sans-serif;
+  margin-top: 30px;
 }
 
 #project-name {
   margin-left: 20px;
   margin-top: 0px;
-  background-color: #272822;
+  background-color: var(--back);
   border: none;
   color: white;
   font-family: "Inter", "Helvetica", "Arial", sans-serif;
@@ -23,4 +26,48 @@ body {
 p {
   margin-bottom: 0px;
   margin-left: 20px;
+}
+
+#username {
+  background-color: var(--back);
+  border-radius: 5px;
+  border: 1px solid white;
+  height: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 20px;
+  width: 75%;
+  margin-top: 20px;
+}
+
+#email {
+  background-color: var(--back);
+  border-radius: 5px;
+  border: 1px solid white;
+  height: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 75%;
+  margin-top: 20px;
+}
+
+#password {
+  background-color: var(--back);
+  border-radius: 5px;
+  border: 1px solid white;
+  height: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 75%;
+}
+
+#submit {
+  margin-top: 20px;
+  background-color: var(--fore);
+  border: none;
+  padding-top: 10px;
+  padding-left: 20px;
+  padding-bottom: 10px;
+  padding-right: 20px;
+  border-radius: 9px;
 }

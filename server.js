@@ -22,13 +22,19 @@ app.get("/", (request, response) => {
   response.sendFile(__dirname + "/views/index.html");
 });
 
+app.get("/login", (request, response) => {
+  response.sendFile(__dirname + "/views/login.html");
+});
+
+app.get("/signup", (request, response) => {
+  response.sendFile(__dirname + "/views/signup.html");
+});
+
 app.get("/projectname", (req, res) => {
   let name = randomize('Aa0', 10);
   let data = { name: name };
   res.send(data);
 })
-
-
 
 // listen for requests :)
 const listener = app.listen(process.env.PORT, () => {
