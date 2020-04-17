@@ -42,12 +42,14 @@
     <script>
       document.CodeMirror = CodeMirror;
       var editor = createEditor(document.getElementById("editor"), {
-        mode: "javascript",
+        mode: "html",
+        lint: true,
         theme: "monokai"
       });
       function deploy() {
         let code = editor.getValue();
-        let content = { code: code,  };
+        let name = document.getElementById("project-name").value;
+        let content = { code: code, name: name };
 
         fetch("/deploy", {
           method: "post",

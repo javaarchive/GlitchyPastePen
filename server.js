@@ -9,7 +9,7 @@ const app = express();
 var randomize = require("randomatic");
 var session = require("express-session");
 
-const fs = require('fs');
+const fs = require("fs");
 
 var bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -54,7 +54,6 @@ app.post("/signup", async (request, response) => {
       authdata = { redirect: "/", detail: "newuser" };
       response.send(authdata);
     } else {
-      
     }
   }
 });
@@ -74,9 +73,9 @@ app.post("/auth", async function(request, response) {
     if (hasuser) {
       let pass = await user.get(username);
       console.log(pass);
-      pass = pass.password; 
-      console.log(pass)
-      console.log(password)
+      pass = pass.password;
+      console.log(pass);
+      console.log(password);
       if (pass === password) {
         request.session.loggedin = true;
         request.session.username = username;
@@ -106,12 +105,12 @@ app.get("/editor", function(request, response) {
 });
 
 app.post("/deploy", function(request, response) {
-  let filename = 
-  fs.writeFile('mynewfile3.txt', 'Hello content!', function (err) {
-  if (err) throw err;
-  console.log('Saved!');
+  let filename = request.body.name + "/" + "index.html";
+  fs.writeFile(filename, request.body.code, function(err) {
+    if (err) throw err;
+    response.sendStatus(200);
+  });
 });
-})
 
 // listen for requests :)
 const listener = app.listen(process.env.PORT, () => {
