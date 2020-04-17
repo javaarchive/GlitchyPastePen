@@ -36,17 +36,30 @@
     <input type="text" id="project-name" />
     <br /><br />
     <textarea id="editor" oninput="save();"></textarea>
+    <button id="deploy" onclick="deploy();">
+      Deploy!
+    </button>
     <script>
       document.CodeMirror = CodeMirror;
       var editor = createEditor(document.getElementById("editor"), {
         mode: "javascript",
         theme: "monokai"
       });
-      editor.oninput = save();
-      function save() {
-        console.log("SAVE!!!");
+      function deploy() {
         let code = editor.getValue();
-        console.log(code);
+        let content = { code: code,  };
+
+        fetch("/deploy", {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(content)
+        })
+          .then(response => response.json())
+          .then(data => {
+            console.log(data);
+          });
       }
     </script>
   </body>

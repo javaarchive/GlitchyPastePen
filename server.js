@@ -9,6 +9,8 @@ const app = express();
 var randomize = require("randomatic");
 var session = require("express-session");
 
+const fs = require('fs');
+
 var bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -102,6 +104,14 @@ app.get("/editor", function(request, response) {
     response.redirect("/");
   }
 });
+
+app.post("/deploy", function(request, response) {
+  let filename = 
+  fs.writeFile('mynewfile3.txt', 'Hello content!', function (err) {
+  if (err) throw err;
+  console.log('Saved!');
+});
+})
 
 // listen for requests :)
 const listener = app.listen(process.env.PORT, () => {
