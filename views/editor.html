@@ -74,7 +74,7 @@
       fetch(`/getCode/${name}`)
         .then(response => response.json())
         .then(data => {
-          editor.setValue(data);
+          editor.setValue(data.code);
         });
 
       function deploy() {
