@@ -27,7 +27,7 @@
     />
     <script src="https://cdn.jsdelivr.net/npm/codemirror@5.52.2/lib/codemirror.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/codemirror@5.52.2/mode/javascript/javascript.js"></script>
-    <script src="/script.js" defer></script>
+    <script src="/script.js"></script>
   </head>
   <body>
     <p>
@@ -35,7 +35,6 @@
     </p>
     <input type="text" id = "project-name" />
     <br /><br />
-    <textarea id="editor"></textarea>
-    <script src="/script.js"></script>
+    <textarea id="editor" oninput = "save();"></textarea>
   </body>
 </html>
