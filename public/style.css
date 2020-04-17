@@ -28,7 +28,7 @@ p {
   margin-left: 20px;
 }
 
-#username {
+.username {
   background-color: var(--back);
   border-radius: 5px;
   border: 1px solid white;
@@ -36,32 +36,35 @@ p {
   padding-left: 20px;
   padding-right: 20px;
   margin-bottom: 20px;
-  width: 75%;
+  width: 50%;
   margin-top: 20px;
+  color: white;
 }
 
-#email {
+.email {
   background-color: var(--back);
   border-radius: 5px;
   border: 1px solid white;
   height: 40px;
   padding-left: 20px;
   padding-right: 20px;
-  width: 75%;
+  width: 50%;
   margin-top: 20px;
+  color: white;
 }
 
-#password {
+.password {
   background-color: var(--back);
   border-radius: 5px;
   border: 1px solid white;
   height: 40px;
   padding-left: 20px;
   padding-right: 20px;
-  width: 75%;
+  width: 50%;
+  color: white;
 }
 
-#submit {
+.submit {
   margin-top: 20px;
   background-color: var(--fore);
   border: none;
