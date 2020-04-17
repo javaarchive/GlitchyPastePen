@@ -13,6 +13,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.json());
 
+const endb = require('endb');
+var user = new endb("sqlite://user.db");
+
 app.use(express.static("public"));
 
 app.get("/", (request, response) => {
@@ -24,6 +27,8 @@ app.get("/projectname", (req, res) => {
   let data = { name: name };
   res.send(data);
 })
+
+
 
 // listen for requests :)
 const listener = app.listen(process.env.PORT, () => {
