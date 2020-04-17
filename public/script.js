@@ -7,12 +7,6 @@ const createEditor = (editor, options = {}) => {
   return e;
 };
 
-document.CodeMirror = CodeMirror;
-var editor = createEditor(document.getElementById("editor"), {
-  mode: "javascript",
-  theme: "monokai"
-});
-
 fetch("/projectname", {
   headers: { "Content-Type": "application/json" }
 })
@@ -24,8 +18,3 @@ fetch("/projectname", {
 
 console.log(":)")
 
-function save() {
-  console.log("SAVE!!!")
-  let code = document.getElementById("editor").getValue;
-  console.log(code);
-}
