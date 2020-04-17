@@ -118,6 +118,7 @@ app.post("/deploy", async function(request, response) {
   let userinfo = await user.get(global.theuser);
   let projects = userinfo.projects;
   let newprojects = projects.push(request.body.name);
+  console.log("New projects:")
   console.log(newprojects);
   response.send({ status: 200 });
 });
