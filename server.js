@@ -20,6 +20,11 @@ const endb = require("endb");
 var user = new endb("sqlite://user.db");
 var project = new endb("sqlite://project.db");
 
+async function all() {
+  let users = await user.all();
+  let pro
+}
+
 app.use(express.static("public"));
 
 app.use(
@@ -50,7 +55,7 @@ app.post("/signup", async (request, response) => {
   if (username && password && global.email) {
     let hasuser = await user.has(username);
     if (!hasuser) {
-      let userinfo = { password: password, email: global.email, projects: [] };
+      let userinfo = { password: password, email: global.email };
       let newuser = await user.set(username, userinfo);
       authdata = { redirect: "/", detail: "newuser" };
       response.send(authdata);
@@ -98,29 +103,28 @@ app.post("/auth", async function(request, response) {
 
 app.get("/editor/new", async (req, res) => {
   let projectname = randomize("Aa0", 10);
+  let dir = "/projects"
+  try {
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir);
+    }
+  } catch (err) {
+    console.error(err);
+  }
   // let data = { name: name };
-  fs.writeFile(`${projectname}.html`, "", function(err) {
+  fs.writeFile(`$/projects/{projectname}.html`, "", function(err) {
     if (err) throw err;
   });
   let projectinfo = { name: projectname, owner: global.theuser };
   let setinfo = await project.set(projectname, projectinfo);
-  let userinfo = await user.get(global.theuser);
-  let thearray = [];
-  let projects = userinfo.projects;
-  console.log(userinfo.projects);
-  let newprojects = projects.push(projectname);
-  let userobj = {
-    password: global.password,
-    email: global.email,
-    projects: projects
-  };
-  console.log("New projects:");
-  console.log(projects);
-  res.redirect(`/editor/${projectname}`)
-})
+  res.redirect(`/editor/${projectname}`);
+});
 
 app.get("/editor/:project", function(request, response) {
-  if (request.session.username === global.theuser && request.session.loggedin === true) {
+  if (
+    request.session.username === global.theuser &&
+    request.session.loggedin === true
+  ) {
     response.sendFile(__dirname + "/views/editor.html");
     console.log(global.theuser);
   } else {
@@ -136,7 +140,7 @@ app.get("/editor/:project", function(request, response) {
 //     let projectinfo = await project.get(request.params.project);
 //     let owner = projectinfo.owner;
 //     if (request.session.username === owner) {
-      
+
 //     }
 //   }
 // });
@@ -149,16 +153,6 @@ app.post("/deploy", async function(request, response) {
   });
   let projectinfo = { name: projectname, owner: global.theuser };
   let setinfo = await project.set(projectname, projectinfo);
-  let userinfo = await user.get(global.theuser);
-  let projects = userinfo.projects;
-  let newprojects = projects.push(request.body.name);
-  let userobj = {
-    password: global.password,
-    email: global.email,
-    projects: projects
-  };
-  console.log("New projects:");
-  console.log(projects);
   response.send({ status: 200 });
 });
 
@@ -167,7 +161,7 @@ app.get("/getCode/:projectname", async (req, res) => {
   fs.readFile(`${projectname}.html`, "utf8", function(err, data) {
     res.send({ code: data });
   });
-})
+});
 
 app.get("/p/:project", function(req, res) {
   let projectname = req.params.project;
