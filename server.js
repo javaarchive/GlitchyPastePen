@@ -113,7 +113,7 @@ app.post("/auth", async function(request, response) {
 
 app.get("/editor/new", async (req, res) => {
   let projectname = randomize("Aa0", 10);
-  let dir = "/projects"
+  let dir = __dirname + "/projects/"
   try {
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir);
@@ -122,7 +122,7 @@ app.get("/editor/new", async (req, res) => {
     console.error(err);
   }
   // let data = { name: name };
-  fs.writeFile(`$/projects/{projectname}.html`, "", function(err) {
+  fs.writeFile(__dirname + `/projects/${projectname}.html`, "", function(err) {
     if (err) throw err;
   });
   let projectinfo = { name: projectname, owner: global.theuser };
