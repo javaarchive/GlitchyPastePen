@@ -22,8 +22,18 @@ var project = new endb("sqlite://project.db");
 
 async function all() {
   let users = await user.all();
-  let pro
+  let projects = await project.all();
+  console.log(users);
+  console.log(projects);
 }
+
+async function clear() {
+  let users = await user.clear();
+  let projects = await project.clear();
+}
+
+// clear();
+all();
 
 app.use(express.static("public"));
 
