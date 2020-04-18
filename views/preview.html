@@ -22,7 +22,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/monokai.min.css"
     />
     <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
+    <!--     <script>hljs.initHighlightingOnLoad();</script> -->
     <script src="/script.js"></script>
   </head>
   <body>
@@ -41,6 +41,12 @@
       //   lint: true,
       //   theme: "monokai"
       // });
+
+      document.addEventListener("DOMContentLoaded", event => {
+        document.querySelectorAll("pre code").forEach(block => {
+          hljs.highlightBlock(block);
+        });
+      });
 
       let projecturl = window.location.href;
       let projectname = projecturl.slice(40);
