@@ -69,9 +69,14 @@
         lint: true,
         theme: "monokai"
       });
+      
+      let projecturl = window.location.href;
+      let projectname = projecturl.slice(40);
+      document.getElementById("project-name").value = projectname;
 
       let name = document.getElementById("project-name").value;
-      fetch(`/getCode/${name}`)
+      let path = '/getCode/' + name;
+      fetch(path)
         .then(response => response.json())
         .then(data => {
           editor.setValue(data.code);
