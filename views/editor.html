@@ -55,13 +55,14 @@
   <body>
     <p>
       <i>PROJECT NAME</i>
-    </p>
+    </p><br />
     <input type="text" id="project-name" />
-    <br /><br />
-    <textarea id="editor" oninput="save();"></textarea>
     <button id="deploy" onclick="deploy();">
       Deploy!
     </button>
+    <br /><br />
+    <textarea id="editor" oninput="save();"></textarea>
+    
     <script>
       document.CodeMirror = CodeMirror;
       var editor = createEditor(document.getElementById("editor"), {
@@ -69,6 +70,7 @@
         lint: true,
         theme: "monokai"
       });
+      editor.setSize('100%', '100%');
       
       let projecturl = window.location.href;
       let projectname = projecturl.slice(40);

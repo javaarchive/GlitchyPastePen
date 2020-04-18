@@ -25,11 +25,13 @@ body {
   resize: none;
   overflow-y: hidden;
   outline: none;
+  display: inline-block;
 }
 
 p {
   margin-bottom: 0px;
   margin-left: 20px;
+  display: inline-block;
 }
 
 .username {
@@ -89,7 +91,17 @@ p {
   padding-right: 20px;
   padding-bottom: 10px;
   border-radius: 9px;
-  display: none;
+}
+
+#fail {
+  background-color: red;
+  width: 75%;
+  color: white;
+  padding-top: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 10px;
+  border-radius: 9px;
 }
 
 pre {
