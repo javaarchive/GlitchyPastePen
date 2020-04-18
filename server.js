@@ -59,10 +59,6 @@ app.post("/signup", async (request, response) => {
   }
 });
 
-app.get("/projectname", (req, res) => {
-  
-});
-
 app.post("/auth", async function(request, response) {
   var authdata;
   global.username = request.body.username;
@@ -122,7 +118,7 @@ app.get("/editor/new", async (req, res) => {
 })
 
 app.get("/editor/:project", function(request, response) {
-  if (request.session.loggedin) {
+  if (request.session.username === global.theuser) {
     response.sendFile(__dirname + "/views/editor.html");
     console.log(global.theuser);
   } else {
@@ -166,7 +162,7 @@ app.post("/deploy", async function(request, response) {
 
 app.get("/getCode/:projectname", async (req, res) => {
   let projectname = req.params.projectname;
-  fs.readFile(`${projectname}.html`, function(err, data) {
+  fs.readFile(`${projectname}.html`, "utf8", function(err, data) {
     res.send({ code: data });
   });
 })
