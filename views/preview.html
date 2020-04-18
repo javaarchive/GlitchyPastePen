@@ -19,37 +19,10 @@
     <link rel="stylesheet" href="/style.css" />
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/codemirror@5.52.2/lib/codemirror.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/monokai.min.css"
     />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/codemirror@5.52.2/theme/monokai.css"
-    />
-    <!--     // https://codemirror.net/addon/lint/lint.css -->
-    <link rel="stylesheet" href="https://codemirror.net/addon/lint/lint.css" />
-    <script src="https://cdn.jsdelivr.net/npm/codemirror@5.52.2/lib/codemirror.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/codemirror@5.52.2/mode/javascript/javascript.js"></script>
-    <script src="https://codemirror.net/mode/javascript/javascript.js"></script>
-    <script src="https://codemirror.net/mode/css/css.js"></script>
-    <script src="https://codemirror.net/mode/htmlmixed/htmlmixed.js"></script>
-    <script src="https://codemirror.net/mode/xml/xml.js"></script>
-    <script src="https://codemirror.net/addon/lint/lint.js"></script>
-    <script src="https://codemirror.net/addon/lint/javascript-lint.js"></script>
-    <script src="https://codemirror.net/addon/lint/json-lint.js"></script>
-    <script src="https://codemirror.net/addon/lint/html-lint.js"></script>
-    <script src="https://ajax.aspnetcdn.com/ajax/jshint/r07/jshint.js"></script>
-    <script src="https://rawgithub.com/zaach/jsonlint/79b553fb65c192add9066da64043458981b3972b/lib/jsonlint.js"></script>
-<!--     <script src="/csslint.js"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/addon/lint/css-lint.min.js."></script>
-    <script src="https://codemirror.net/addon/edit/closetag.js"></script>
-    <script src="https://codemirror.net/addon/edit/matchbrackets.js"></script>
-    <script src="https://codemirror.net/addon/selection/active-line.js"></script>
-    <script src="https://codemirror.net/addon/fold/foldcode.js"></script>
-    <script src="https://codemirror.net/addon/fold/foldgutter.js"></script>
-    <script src="https://codemirror.net/addon/fold/brace-fold.js"></script>
-    <script src="https://codemirror.net/addon/fold/xml-fold.js"></script>
-    <script src="https://htmlhint.com/js/htmlhint.js"></script>
-    <script src="https://codemirror.net/addon/fold/comment-fold.js"></script>
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
     <script src="/script.js"></script>
   </head>
   <body>
@@ -58,8 +31,8 @@
     </p>
     <p type="text" id="project-name"></p>
     <br /><br />
-    <pre id = "code-preview">
-      <code></code>
+    <pre>
+      <code id="code-preview" class = "lanuguage-html"></code>
     </pre>
     <script>
       // document.CodeMirror = CodeMirror;
@@ -68,14 +41,13 @@
       //   lint: true,
       //   theme: "monokai"
       // });
-      
+
       let projecturl = window.location.href;
       let projectname = projecturl.slice(40);
       document.getElementById("project-name").innerText = projectname;
-      
 
       let name = document.getElementById("project-name").innerText;
-      let path = '/getCode/' + name;
+      let path = "/getCode/" + name;
       fetch(path)
         .then(response => response.json())
         .then(data => {
