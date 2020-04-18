@@ -109,3 +109,11 @@ pre {
   margin-right: 20px;
   background-color: var(--back)
 }
+
+#deploy {
+  border: none;
+  background-color: var(--back);
+  display: inline-block;
+  float: right;
+  cursor: pointer;
+}
