@@ -56,35 +56,36 @@
     <p>
       <i>PROJECT NAME</i>
     </p>
-    <input type="text" id="project-name" />
+    <p type="text" id="project-name"></p>
     <br /><br />
-    <textarea id="editor" oninput="save();"></textarea>
-    <button id="deploy" onclick="deploy();">
-      Deploy!
-    </button>
+    <pre id = "code-preview">
+      <code></code>
+    </pre>
     <script>
-      document.CodeMirror = CodeMirror;
-      var editor = createEditor(document.getElementById("editor"), {
-        mode: "text/html",
-        lint: true,
-        theme: "monokai"
-      });
+      // document.CodeMirror = CodeMirror;
+      // var editor = createEditor(document.getElementById("editor"), {
+      //   mode: "text/html",
+      //   lint: true,
+      //   theme: "monokai"
+      // });
       
       let projecturl = window.location.href;
       let projectname = projecturl.slice(40);
-      document.getElementById("project-name").value = projectname;
+      document.getElementById("project-name").innerText = projectname;
+      
 
-      let name = document.getElementById("project-name").value;
+      let name = document.getElementById("project-name").innerText;
       let path = '/getCode/' + name;
       fetch(path)
         .then(response => response.json())
         .then(data => {
-          editor.setValue(data.code);
+          console.log(data);
+          document.getElementById("code-preview").innerText = data.code;
         });
 
       function deploy() {
         let code = editor.getValue();
-        let name = document.getElementById("project-name").value;
+        let name = document.getElementById("project-name").innerText;
         let content = { code: code, name: name };
 
         fetch("/deploy", {

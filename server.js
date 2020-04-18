@@ -105,7 +105,9 @@ app.get("/editor/new", async (req, res) => {
   let projectinfo = { name: projectname, owner: global.theuser };
   let setinfo = await project.set(projectname, projectinfo);
   let userinfo = await user.get(global.theuser);
+  let thearray = [];
   let projects = userinfo.projects;
+  console.log(userinfo.projects);
   let newprojects = projects.push(projectname);
   let userobj = {
     password: global.password,
@@ -118,11 +120,11 @@ app.get("/editor/new", async (req, res) => {
 })
 
 app.get("/editor/:project", function(request, response) {
-  if (request.session.username === global.theuser) {
+  if (request.session.username === global.theuser && request.session.loggedin === true) {
     response.sendFile(__dirname + "/views/editor.html");
     console.log(global.theuser);
   } else {
-    response.redirect("/");
+    response.sendFile(__dirname + "/views/preview.html");
   }
 });
 
