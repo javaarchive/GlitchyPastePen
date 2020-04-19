@@ -168,7 +168,7 @@ app.post("/deploy", async function(request, response) {
 
 app.get("/getCode/:projectname", async (req, res) => {
   let projectname = req.params.projectname;
-  fs.readFile(`${projectname}.html`, "utf8", function(err, data) {
+  fs.readFile(`projects/${projectname}.html`, "utf8", function(err, data) {
     res.send({ code: data });
   });
 });

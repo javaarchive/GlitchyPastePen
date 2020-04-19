@@ -28,7 +28,7 @@ body {
   display: inline-block;
 }
 
-.p {
+.p-itle {
   margin-bottom: 0px;
   margin-left: 20px;
   display: inline-block;
@@ -120,4 +120,8 @@ pre {
 
 .signup-link {
   display: block;
+}
+
+header {
+  margin-bottom: 1px solid black;
 }
