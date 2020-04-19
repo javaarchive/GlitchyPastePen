@@ -57,8 +57,10 @@
       <p class="p-title">
         <i>PROJECT NAME</i>
       </p>
-      <br />
       <input type="text" id="project-name" />
+      <p id="owner">
+        
+      </p>
       <button id="deploy" onclick="deploy();" title="Save code!">
         <img
           src="https://img.icons8.com/cotton/100/000000/save.png"
@@ -88,6 +90,12 @@
         .then(response => response.json())
         .then(data => {
           editor.setValue(data.code);
+        });
+      
+      fetch('/projectinfo/' + projectname)
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById("")
         });
 
       function deploy() {
