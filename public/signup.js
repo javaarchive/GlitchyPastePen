@@ -15,9 +15,9 @@ const signup = () => {
       if (data.redirect == "signup") {
         window.location.href = "https://pasteglitchpen.glitch.me/signup";
       } else if (data.redirect == "editor") {
-        window.location.href = "https://pasteglitchpen.glitch.me/editor";
+        window.location.href = "https://pasteglitchpen.glitch.me/editor/new";
       } else if (data.redirect == "/") {
-        window.location.href = "https://pasteglitchpen.glitch.me/";
+        window.location.href = "https://pasteglitchpen.glitch.me/login-new";
       } else {
         console.log("yo!");
       }

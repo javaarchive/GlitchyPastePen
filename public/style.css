@@ -28,10 +28,10 @@ body {
   display: inline-block;
 }
 
-.p-itle {
+.p-title {
   margin-bottom: 0px;
   margin-left: 20px;
-  display: inline-block;
+  display: block;
 }
 
 .username {

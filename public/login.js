@@ -17,7 +17,7 @@ const login = () => {
       } else if (data.redirect == "editor") {
         window.location.href = "https://pasteglitchpen.glitch.me/editor/new";
       } else if (data.redirect == "/") {
-        window.location.href = "https://pasteglitchpen.glitch.me/";
+        window.location.href = "https://pasteglitchpen.glitch.me/redirect/loginfail";
       } else {
         console.log("yo!")
       }

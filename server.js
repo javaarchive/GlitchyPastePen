@@ -178,6 +178,18 @@ app.get("/p/:project", function(req, res) {
   res.sendFile(__dirname + "/" + projectname + ".html");
 });
 
+app.get("/redirect/loginfail", function(req, res) {
+  res.sendFile(__dirname + "/views/login-fail.html");
+});
+
+app.get("/:user", function(req, res) {
+  if (/* req.session.loggedin === true && */ req.session.username === req.params.user) {
+    res.sendFile(__dirname + "/views/user.html");
+  } else {
+    // coming up
+  }
+})
+
 // listen for requests :)
 const listener = app.listen(process.env.PORT, () => {
   console.log("Your app is listening on port " + listener.address().port);
