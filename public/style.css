@@ -28,6 +28,11 @@ body {
   display: inline-block;
 }
 
+.owner {
+  margin-left: 20px;
+  margin-top: 0px;
+}
+
 .p-title {
   margin-bottom: 0px;
   margin-left: 20px;

@@ -40,7 +40,7 @@
     <script src="https://ajax.aspnetcdn.com/ajax/jshint/r07/jshint.js"></script>
     <script src="https://rawgithub.com/zaach/jsonlint/79b553fb65c192add9066da64043458981b3972b/lib/jsonlint.js"></script>
     <!--     <script src="/csslint.js"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/addon/lint/css-lint.min.js."></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/addon/lint/css-lint.min.js"></script>
     <script src="https://codemirror.net/addon/edit/closetag.js"></script>
     <script src="https://codemirror.net/addon/edit/matchbrackets.js"></script>
     <script src="https://codemirror.net/addon/selection/active-line.js"></script>
@@ -58,7 +58,7 @@
         <i>PROJECT NAME</i>
       </p>
       <input type="text" id="project-name" />
-      <p id="owner">
+      <p class="owner">
         
       </p>
       <button id="deploy" onclick="deploy();" title="Save code!">
@@ -95,7 +95,7 @@
       fetch('/projectinfo/' + projectname)
         .then(response => response.json())
         .then(data => {
-          document.getElementById("")
+          document.getElementsByClassName("owner")[0].innerText = "by " + data.owner;
         });
 
       function deploy() {

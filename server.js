@@ -195,11 +195,13 @@ app.get("/u/:user", function(req, res) {
   }
 });
 
-app.get("projectinfo/:projectname", async (req, res) => {
+app.get("/projectinfo/:projectname", async (req, res) => {
   let projectname = req.params.projectname;
   let projectinfo = await project.get(projectname);
-  res.send(projectinfo);
-})
+  console.log(projectname);
+  console.log(projectinfo);
+  res.send({ name: projectinfo.name, owner: projectinfo.owner });
+});
 // listen for requests :)
 const listener = app.listen(process.env.PORT, () => {
   console.log("Your app is listening on port " + listener.address().port);
