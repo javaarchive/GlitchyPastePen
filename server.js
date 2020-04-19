@@ -182,13 +182,18 @@ app.get("/redirect/loginfail", function(req, res) {
   res.sendFile(__dirname + "/views/login-fail.html");
 });
 
-app.get("/:user", function(req, res) {
-  if (/* req.session.loggedin === true && */ req.session.username === req.params.user) {
+app.get("/u/:user", function(req, res) {
+  console.log(req.session.username);
+  console.log(req.params.user);
+  if (
+    /* req.session.loggedin === true && */ req.session.username ===
+    req.params.user
+  ) {
     res.sendFile(__dirname + "/views/user.html");
   } else {
-    // coming up
+    res.redirect("/");
   }
-})
+});
 
 // listen for requests :)
 const listener = app.listen(process.env.PORT, () => {
