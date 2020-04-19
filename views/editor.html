@@ -39,7 +39,7 @@
     <script src="https://codemirror.net/addon/lint/html-lint.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jshint/r07/jshint.js"></script>
     <script src="https://rawgithub.com/zaach/jsonlint/79b553fb65c192add9066da64043458981b3972b/lib/jsonlint.js"></script>
-<!--     <script src="/csslint.js"></script> -->
+    <!--     <script src="/csslint.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/addon/lint/css-lint.min.js."></script>
     <script src="https://codemirror.net/addon/edit/closetag.js"></script>
     <script src="https://codemirror.net/addon/edit/matchbrackets.js"></script>
@@ -53,16 +53,22 @@
     <script src="/script.js"></script>
   </head>
   <body>
-    <p>
-      <i>PROJECT NAME</i>
-    </p><br />
-    <input type="text" id="project-name" />
-    <button id="deploy" onclick="deploy();" title="Save code!">
-      <img src="https://img.icons8.com/cotton/100/000000/save.png" height="40px" />
-    </button>
+    <header>
+      <p class="p">
+        <i>PROJECT NAME</i>
+      </p>
+      <br />
+      <input type="text" id="project-name" />
+      <button id="deploy" onclick="deploy();" title="Save code!">
+        <img
+          src="https://img.icons8.com/cotton/100/000000/save.png"
+          height="40px"
+        />
+      </button>
+    </header>
     <br /><br />
     <textarea id="editor" oninput="save();"></textarea>
-    
+
     <script>
       document.CodeMirror = CodeMirror;
       var editor = createEditor(document.getElementById("editor"), {
@@ -70,14 +76,14 @@
         lint: true,
         theme: "monokai"
       });
-      editor.setSize('100%', '100%');
-      
+      editor.setSize("100%", "100%");
+
       let projecturl = window.location.href;
       let projectname = projecturl.slice(40);
       document.getElementById("project-name").value = projectname;
 
       let name = document.getElementById("project-name").value;
-      let path = '/getCode/' + name;
+      let path = "/getCode/" + name;
       fetch(path)
         .then(response => response.json())
         .then(data => {

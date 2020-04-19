@@ -28,7 +28,7 @@ body {
   display: inline-block;
 }
 
-p {
+.p {
   margin-bottom: 0px;
   margin-left: 20px;
   display: inline-block;
@@ -116,4 +116,8 @@ pre {
   display: inline-block;
   float: right;
   cursor: pointer;
+}
+
+.signup-link {
+  display: block;
 }
