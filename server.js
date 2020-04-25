@@ -1,4 +1,4 @@
-  // server.js
+// server.js
 // where your node app starts
 
 // we've started you off with Express (https://expressjs.com/)
@@ -16,10 +16,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.json());
 
-const cors = require('cors');
+const cors = require("cors");
 app.use(cors());
 
-app.set('view engine', 'ejs');
+app.set("view engine", "ejs");
 
 const endb = require("endb");
 var user = new endb("sqlite://user.db");
@@ -118,7 +118,7 @@ app.post("/auth", async function(request, response) {
 
 app.get("/editor/new", async (req, res) => {
   let projectname = randomize("Aa0", 10);
-  let dir = __dirname + "/projects/"
+  let dir = __dirname + "/projects/";
   try {
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir);
@@ -187,25 +187,19 @@ app.get("/redirect/loginfail", function(req, res) {
   res.sendFile(__dirname + "/views/login-fail.html");
 });
 
-app.get("/u/:user", function(req, res) {
-  console.log(req.session.username);
-  console.log(req.params.user);
-  if (
-    /* req.session.loggedin === true && */ req.session.username ===
-    req.params.user
-  ) {
-    res.sendFile(__dirname + "/views/user.html");
+app.get("/u/:user", (req, res) => {
+  if (req.session.loggedin && req.session.username === req.params.user) {
+    app.render("user", {
+      username: req.session.username,
+      user: req.params.user
+    });
   } else {
-    res.redirect("/");
+    app.render("user", {
+      username: req.params.user,
+      user: "not logged in!"
+    });
   }
 });
-
-app.get("/u/:user", (req, res) => {
-  app.render('user', {
-    username: req.sessions.username,
-    user: req.params.user
-  });
-})
 
 app.get("/projectinfo/:projectname", async (req, res) => {
   let projectname = req.params.projectname;
@@ -218,4 +212,3 @@ app.get("/projectinfo/:projectname", async (req, res) => {
 const listener = app.listen(process.env.PORT, () => {
   console.log("Your app is listening on port " + listener.address().port);
 });
-
