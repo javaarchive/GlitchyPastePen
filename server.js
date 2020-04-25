@@ -191,16 +191,20 @@ app.get("/redirect/loginfail", function(req, res) {
 
 app.get("/u/:user", async (req, res) => {
   console.log("User info...")
+  var projects = await project.all();
+  projects = projects.filter(project => project.value.owner === req.params.user);
+  console.log(projects);
   if (req.session.loggedin && req.session.username === req.params.user) {
     console.log("Logged in!");
     res.render("user", {
-      projects: await project.all(),
+      projects: projects,
       username: req.session.username,
       user: req.params.user
     });
   } else {
     console.log("Not logged in!")
     res.render("user", {
+      projects: projects,
       username: req.params.user,
       user: "not logged in!"
     });
