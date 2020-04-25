@@ -5,6 +5,7 @@ dependencies:
   endb: 0.22.9
   express: 4.17.1
   express-session: 1.17.1
+  path: 0.12.7
   randomatic: 3.1.1
   sql: 0.78.0
   sqlite3: 4.1.1
@@ -918,6 +919,13 @@ packages:
     dev: false
     resolution:
       integrity: sha1-32BBeABfUi8V60SQ5yR6G/qmf4w=
+  /path/0.12.7:
+    dependencies:
+      process: 0.11.10
+      util: 0.10.4
+    dev: false
+    resolution:
+      integrity: sha1-1NwqUGxM4hl+tIHr/NWzbAFAsQ8=
   /performance-now/2.1.0:
     dev: false
     resolution:
@@ -926,6 +934,12 @@ packages:
     dev: false
     resolution:
       integrity: sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==
+  /process/0.11.10:
+    dev: false
+    engines:
+      node: '>= 0.6.0'
+    resolution:
+      integrity: sha1-czIwDoQBYb2j5podHZGn1LwW8YI=
   /proxy-addr/2.0.5:
     dependencies:
       forwarded: 0.1.2
@@ -1281,6 +1295,12 @@ packages:
     dev: false
     resolution:
       integrity: sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=
+  /util/0.10.4:
+    dependencies:
+      inherits: 2.0.3
+    dev: false
+    resolution:
+      integrity: sha512-0Pm9hTQ3se5ll1XihRic3FDIku70C+iHUdT/W926rSgHV5QgXsYbKZN8MSC3tJtSkhuROzvsQjAaFENRXr+19A==
   /utils-merge/1.0.1:
     dev: false
     engines:
@@ -1332,6 +1352,7 @@ specifiers:
   endb: ^0.22.9
   express: ^4.17.1
   express-session: ^1.17.1
+  path: ^0.12.7
   randomatic: ^3.1.1
   sql: ^0.78.0
   sqlite3: ^4.1.1

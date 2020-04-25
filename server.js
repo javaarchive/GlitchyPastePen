@@ -19,7 +19,7 @@ app.use(express.json());
 const cors = require("cors");
 app.use(cors());
 
-app.set("view engine", "ejs");
+const path = require('path');
 
 const endb = require("endb");
 var user = new endb("sqlite://user.db");
@@ -41,6 +41,8 @@ async function clear() {
 all();
 
 app.use(express.static("public"));
+app.set("views", path.join(__dirname, 'ejs'))
+app.set("view engine", "ejs");
 
 app.use(
   session({
@@ -188,13 +190,16 @@ app.get("/redirect/loginfail", function(req, res) {
 });
 
 app.get("/u/:user", (req, res) => {
+  console.log("User info...")
   if (req.session.loggedin && req.session.username === req.params.user) {
-    app.render("user", {
+    console.log("Logged in!");
+    res.render("user", {
       username: req.session.username,
       user: req.params.user
     });
   } else {
-    app.render("user", {
+    console.log("Not logged in!")
+    res.render("user", {
       username: req.params.user,
       user: "not logged in!"
     });
