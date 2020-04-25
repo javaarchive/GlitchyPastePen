@@ -1,10 +1,10 @@
 @import url('https://rsms.me/inter/inter.css');
 
 body {
-  --fore: white;
-  --back: #272822;
+  --fore: black;
+  --back: white;
   background-color: var(--back);
-  color: white;
+  color: black;
   font-family: "Inter", "Helvetica", "Arial", sans-serif;
   margin-top: 30px;
 }
@@ -18,7 +18,7 @@ body {
   margin-top: 0px;
   background-color: var(--back);
   border: none;
-  color: white;
+  color: black;
   font-family: "Inter", "Helvetica", "Arial", sans-serif;
   height: 35px;
   font-size: 30px;
@@ -40,7 +40,7 @@ body {
 }
 
 .username {
-  background-color: var(--back);
+  background-color: #f5f5f5;
   border-radius: 5px;
   border: 1px solid white;
   height: 40px;
@@ -49,11 +49,11 @@ body {
   margin-bottom: 20px;
   width: 50%;
   margin-top: 20px;
-  color: white;
+  color: black;
 }
 
 .email {
-  background-color: var(--back);
+  background-color: #f5f5f5;
   border-radius: 5px;
   border: 1px solid white;
   height: 40px;
@@ -61,23 +61,23 @@ body {
   padding-right: 20px;
   width: 50%;
   margin-top: 20px;
-  color: white;
+  color: black;
 }
 
 .password {
-  background-color: var(--back);
+  background-color: #f5f5f5;
   border-radius: 5px;
   border: 1px solid white;
   height: 40px;
   padding-left: 20px;
   padding-right: 20px;
   width: 50%;
-  color: white;
+  color: black;
 }
 
 .submit {
   margin-top: 20px;
-  background-color: var(--fore);
+  background-color: #f5f5f5;
   border: none;
   padding-top: 10px;
   padding-left: 20px;

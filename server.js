@@ -1,4 +1,4 @@
-// server.js
+  // server.js
 // where your node app starts
 
 // we've started you off with Express (https://expressjs.com/)
@@ -194,6 +194,10 @@ app.get("/u/:user", function(req, res) {
     res.redirect("/");
   }
 });
+
+app.get("/user", (req, res) => {
+  res.sendFile(__dirname + "/views/user.html")
+})
 
 app.get("/projectinfo/:projectname", async (req, res) => {
   let projectname = req.params.projectname;
