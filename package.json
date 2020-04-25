@@ -10,10 +10,12 @@
     "express": "^4.17.1",
     "randomatic": "^3.1.1",
     "body-parser": "^1.19.0",
-    "endb": "^0.22.7",
+    "endb": "^0.22.9",
     "sqlite3": "^4.1.1",
     "sql": "^0.78.0",
-    "express-session": "^1.16.1"
+    "express-session": "^1.17.1",
+    "cors": "^2.8.5",
+    "ejs": "^3.1.2"
   },
   "engines": {
     "node": "12.x"

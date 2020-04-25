@@ -16,6 +16,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.json());
 
+const cors = require('cors');
+app.use(cors());
+
+app.set('view engine', 'ejs');
+
 const endb = require("endb");
 var user = new endb("sqlite://user.db");
 var project = new endb("sqlite://project.db");
@@ -195,8 +200,11 @@ app.get("/u/:user", function(req, res) {
   }
 });
 
-app.get("/user", (req, res) => {
-  res.sendFile(__dirname + "/views/user.html")
+app.get("/u/:user", (req, res) => {
+  app.render('user', {
+    username: req.sessions.username,
+    user: req.params.user
+  });
 })
 
 app.get("/projectinfo/:projectname", async (req, res) => {
