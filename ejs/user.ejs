@@ -51,6 +51,10 @@
       transform: scale(1.01);
       transition: 1s ease;
     }
+    
+    img {
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>  
@@ -63,9 +67,11 @@
     <i>YOUR PROJECTS</i><br /><br />
     <% for (var project of projects) { %>
       <div class = "project">
-        <%= project.key  %>
+        <%= project.key  %>&nbsp;&nbsp;
+        <img src="https://cdn.glitch.com/622554c6-3118-4838-8819-e003b9525f5d%2F9755946431556282330.svg?v=1587891245518">
       </div>
     <% } %>
   </div>
+  <br /><br />
 <!--   <script src = "/user.js"></script> -->
 </body>

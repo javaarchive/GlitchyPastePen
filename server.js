@@ -189,6 +189,10 @@ app.get("/redirect/loginfail", function(req, res) {
   res.sendFile(__dirname + "/views/login-fail.html");
 });
 
+app.get("/delete/:project", (req, res) => {
+  if (req.session.username)
+})
+
 app.get("/u/:user", async (req, res) => {
   console.log("User info...")
   var projects = await project.all();
