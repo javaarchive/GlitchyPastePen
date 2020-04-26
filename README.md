@@ -1,30 +1,27 @@
-# hello-express
+## Under development
 
-A server that serves a webpage, its resources, and some data
+---
 
+# GlitchyPastePen
 
-## Your Project
+A code editor with more features than Pastebin, (almost) equivalent of CodePen and smaller than Glitch.
 
-On the front-end,
+Create simple front-end projects (mainly with HTML, CSS and JS) and display them with instant deployment and hosting.
 
-- Edit `views/index.html` to change the content of the webpage
-- `public/client.js` is the javacript that runs when you load the webpage
-- `public/style.css` is the styles for `views/index.html`
-- Drag in `assets`, like images or music, to add them to your project
+GlitchyPastePen is still under construction and uses CodeMirror for editor functionality. It uses the default theme, as I've not yet created a suitable theme. Also, several add-ons need to be added to the editor.
 
-On the back-end,
+I'm still working on a dashboard for users and which all pages should be displayed to users that haven't logged in, and how. 
 
-- your app starts at `server.js`
-- add frameworks and packages in `package.json`
-- safely store app secrets in `.env` (nobody can see this but you and people you invite)
+The link to the live app of this project will be available as soon as the initial update to the projects work.
 
-Click `Show` in the header to see your app live. Updates to your code will instantly deploy.
+### Uses
 
+- HTML
+- CSS
+- JS
+- Node.js (Express)
+- EJS
 
-## Made by [Glitch](https://glitch.com/)
+### Contributors
 
-**Glitch** is the friendly community where you'll build the app of your dreams. Glitch lets you instantly create, remix, edit, and host an app, bot or site, and you can invite collaborators or helpers to simultaneously edit code with you.
-
-Find out more [about Glitch](https://glitch.com/about).
-
-( ᵔ ᴥ ᵔ )
+* [Khaleel Gibran](https://khaleelgibran.com)
