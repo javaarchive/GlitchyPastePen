@@ -2,6 +2,9 @@
 <head>
   <title><%= username %></title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+    
     body {
       --fore: black;
       --back: white;
@@ -25,6 +28,26 @@
     #main {
       margin-left: 25px;
     }
+    
+    .project {
+      padding-top: 10px;
+      padding-left: 20px;
+      padding-right: 20px;
+      padding-bottom: 10px;
+      width: 100%;
+      font-family: "Raleway", sans-serif;
+      transition: 1s ease;
+      background-color: #85FFBD;
+      background-image: linear-gradient(45deg, #85FFBD 0%, #FFFB7D 100%);
+      border-radius: 
+    }
+    
+    .project:hover {
+      -webkit-transform: scale(1.01);
+      -ms-transform: scale(1.01);
+      transform: scale(1.01);
+      transition: 1s ease;
+    }
   </style>
 </head>
 <body>  
@@ -34,10 +57,12 @@
     </h1>
   </header><br />
   <div id = "main">
-    <i>YOUR PROJECTS</i><br />
-    <p>
-      <%= projects %>
-    </p>
+    <i>YOUR PROJECTS</i><br /><br />
+    <% for (var project of projects) { %>
+      <div class = "project">
+        <%= project.key  %>
+      </div>
+    <% } %>
   </div>
 <!--   <script src = "/user.js"></script> -->
 </body>
