@@ -68,10 +68,18 @@
     <% for (var project of projects) { %>
       <div class = "project">
         <%= project.key  %>&nbsp;&nbsp;
-        <img src="https://cdn.glitch.com/622554c6-3118-4838-8819-e003b9525f5d%2F9755946431556282330.svg?v=1587891245518">
+        <img onclick="remove(<%= project.key %>)" src="https://cdn.glitch.com/622554c6-3118-4838-8819-e003b9525f5d%2F9755946431556282330.svg?v=1587891245518">
       </div>
     <% } %>
   </div>
   <br /><br />
-<!--   <script src = "/user.js"></script> -->
+  <script>
+    function remove(project) {
+      fetch("/delete/" + project)
+      .then(res => res.json() )
+      .then(data => {
+        console.log(data);
+      })
+    }
+  </script>
 </body>

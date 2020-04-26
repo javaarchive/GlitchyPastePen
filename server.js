@@ -189,8 +189,16 @@ app.get("/redirect/loginfail", function(req, res) {
   res.sendFile(__dirname + "/views/login-fail.html");
 });
 
-app.get("/delete/:project", (req, res) => {
-  if (req.session.username)
+app.get("/delete/:project", async (req, res) => {
+  let projectinfo = await project.get(req.params.project);
+  if (req.session.loggedin && req.session.username === projectinfo.owner) {
+    await project.delete(req.params.project);
+    console.log("Authorised!");
+    res.sendStatus(200);
+  } else {
+    console.log("Unauthorised!");
+    res.sendStatus(401);
+  }
 })
 
 app.get("/u/:user", async (req, res) => {
