@@ -1,7 +1,7 @@
 {
   "name": "pasteglitchpen",
-  "version": "0.0.1",
-  "description": "A simple Node app built on Express, instantly up and running.",
+  "version": "0.0.2",
+  "description": "A code editor with more features than Pastebin, (almost) equivalent of CodePen and smaller than Glitch.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
@@ -22,7 +22,7 @@
     "node": "12.x"
   },
   "repository": {
-    "url": "https://glitch.com/edit/#!/hello-express"
+    "url": "https://github.com/khalby786/GlitchyPastePen"
   },
   "license": "MIT",
   "keywords": [
