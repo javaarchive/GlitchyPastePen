@@ -223,13 +223,17 @@ app.get("/u/:user", async (req, res) => {
     });
   } else {
     console.log("Not logged in!")
-    res.render("user", {
+    res.render("userpreview", {
       projects: projects,
       username: req.params.user,
       user: "not logged in!"
     });
   }
 });
+
+app.get("/me", (req, res) => {
+  let me = 
+})
 
 app.get("/projectinfo/:projectname", async (req, res) => {
   let projectname = req.params.projectname;

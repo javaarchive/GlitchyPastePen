@@ -7,8 +7,8 @@ const createEditor = (editor, options = {}) => {
   return e;
 };
 
-document.getElementById("status").onclick = function() {
-  this.style.dislay = "none";
+function dismiss() {
+  document.getElementById("status").style.display = "none";
 }
 
 // fetch("/projectname", {

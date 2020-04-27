@@ -1,7 +1,7 @@
 const login = () => {
-  let username = document.getElementsByClassName("username")[0].value;
-  let password = document.getElementsByClassName("password")[0].value;
-  let content = { username: username, password: password };
+  var username = document.getElementsByClassName("username")[0].value;
+  var password = document.getElementsByClassName("password")[0].value;
+  var content = { username: username, password: password };
   fetch("/auth", {
     method: "post",
     headers: {
