@@ -23,7 +23,7 @@
     />
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/codemirror@5.52.2/theme/monokai.css"
+      href="https://cdn.jsdelivr.net/npm/codemirror@5.52.2/theme/ayu-mirage.css"
     />
     <!--     // https://codemirror.net/addon/lint/lint.css -->
     <link rel="stylesheet" href="/codemirror-theme.css" />
@@ -55,7 +55,7 @@
     <script src="https://codemirror.net/addon/fold/comment-fold.js"></script>
     <script src="/script.js"></script>
   </head>
-  <body>
+  <body style="background-color:#1f2430;">
     <header>
       <p class="p-title">
         <i>PROJECT NAME</i>
@@ -77,9 +77,11 @@
     <script>
       document.CodeMirror = CodeMirror;
       var editor = createEditor(document.getElementById("editor"), {
-        mode: "text/html",
+        lineNumbers: true,
+        mode:  "htmlmixed",
+        htmlMode: true,
         lint: true,
-        theme: "friendship-bracelet"
+        theme: "ayu-mirage"
       });
       editor.setSize("100%", "100%");
 

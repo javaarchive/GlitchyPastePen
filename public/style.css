@@ -26,9 +26,9 @@ header {
 #project-name {
   margin-left: 20px;
   margin-top: 0px;
-  background-color: var(--back);
+  background-color: #1f2430;
   border: none;
-  color: black;
+  color: white;
   font-family: "Inter", "Helvetica", "Arial", sans-serif;
   height: 35px;
   font-size: 30px;
@@ -41,6 +41,7 @@ header {
 .owner {
   margin-left: 20px;
   margin-top: 0px;
+  color: white;
 }
 
 .p-title {
@@ -127,7 +128,7 @@ pre {
 
 #deploy {
   border: none;
-  background-color: var(--back);
+  background-color: #1f2430;
   display: inline-block;
   float: right;
   cursor: pointer;
