@@ -120,7 +120,12 @@
           .then(response => response.json())
           .then(data => {
             if (data.status === 200) {
-              document.getElementById("status").innerHTML = "Your project has been successfully deployed <br />at https://glitchypastepen.glitch.me/p/" +
+              document.getElementById("status").style.display = "block";
+              document.getElementById("status").innerHTML = "Your project has been successfully deployed <br />at https://glitchypastepen.glitch.me/p/" + name;
+            } else {
+              document.getElementById("status").style.display = "block";
+              document.getElementById('status').style.backgroundColor = "red";
+              document.getElementById('status').innerHTML = "Something went wrong! <br />Try again?";
             }
           });
       }
