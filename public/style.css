@@ -124,7 +124,7 @@ header {
 pre {
   margin-left: 20px;
   margin-right: 20px;
-  background-color: var(--back)
+  background-color: #1f2430;
 }
 
 #deploy {

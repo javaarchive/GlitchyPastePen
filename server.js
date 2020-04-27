@@ -53,7 +53,11 @@ app.use(
 );
 
 app.get("/", async (request, response) => {
-  response.sendFile(__dirname + "/views/login.html");
+  if (request.session.loggedin) {
+    response.redirect("/u/" + request.session.username);
+  } else {
+    response.sendFile(__dirname + "/views/login.html");
+  }
 });
 
 // app.get("/login", (request, response) => {
@@ -202,6 +206,10 @@ app.get("/delete/:project", async (req, res) => {
 })
 
 app.get("/u/:user", async (req, res) => {
+  if (!await user.has(req.params.user)) {
+    res.send("User not found!");
+    return;
+  }
   console.log("User info...")
   var projects = await project.all();
   projects = projects.filter(project => project.value.owner === req.params.user);
