@@ -15,7 +15,7 @@
     }
     
     h1 {
-      margin-left: 20px;
+      margin-left: 25px;
       margin-top: 30px;
     }
 
@@ -62,7 +62,20 @@
     #new {
       float: right;
       margin-right: 20px;
-      margin-top: 80px;
+      margin-top: 70px;
+      background-color: #1f2430;
+      border: none;
+      color: yellow;
+      padding-top: 10px;
+      padding-left: 20px;
+      padding-bottom: 10px;
+      padding-right: 20px;
+      cursor: pointer;
+    }
+    
+    a {
+      text-decoration: none;
+      color: white;
     }
   </style>
 </head>
@@ -70,14 +83,14 @@
   <header>
     <a href="/"><img src="https://cdn.khaleelgibran.com/img/glitchypastepen.png" height="100px"></a>
     <button id="new">
-      New Project
+      <a href="/editor/new">NEW PROJECT</a>
     </button>
   </header>
   <h1>
     <%= username %>
   </h1>
   <div id = "main">
-    <i>YOUR PROJECTS</i><br /><br />
+    <i>PROJECTS</i><br /><br />
     <% for (var project of projects) { %>
       <div class = "project">
         <%= project.key  %>&nbsp;&nbsp;

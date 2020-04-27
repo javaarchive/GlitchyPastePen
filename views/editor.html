@@ -63,8 +63,8 @@
         <i>PROJECT NAME</i>
       </p>
       <input type="text" id="project-name" />
-      <p class="owner">
-        
+      <p class="empty">
+        <a href="" class="owner"></a>
       </p>
       <button id="deploy" onclick="deploy();" title="Save code!">
         <img
@@ -103,6 +103,7 @@
         .then(response => response.json())
         .then(data => {
           document.getElementsByClassName("owner")[0].innerText = "by " + data.owner;
+          document.getElementsByClassName("owner")[0].href = "/u/" + data.owner;
         });
 
       function deploy() {

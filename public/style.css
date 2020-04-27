@@ -158,7 +158,7 @@ footer {
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 9%;
+  height: 15%;
   background-color: #1f2430;
   color: white;
   text-align: center;
@@ -167,6 +167,49 @@ footer {
 }
 
 .i {
-  height: ;
-  width: ;
+  color: red;
+  font-size: 120%
+}
+
+a {
+  text-decoration: none;
+  margin-top: 0px;
+}
+
+.empty {
+  margin-top: 0px;
+}
+
+.navbar {
+  width: 100%;
+  background-color: #696969;
+  overflow: auto;
+}
+
+/* Navbar links */
+.navbar a {
+  float: left;
+  text-align: center;
+  padding: 12px;
+  color: white;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Navbar links on mouse-over */
+.navbar a:hover {
+  background-color: #000;
+}
+
+/* Current/active navbar link */
+.active {
+  background-color: #4CAF50;
+}
+
+/* Add responsiveness - will automatically display the navbar vertically instead of horizontally on screens less than 500 pixels */
+@media screen and (max-width: 500px) {
+  .navbar a {
+    float: none;
+    display: block;
+  }
 }

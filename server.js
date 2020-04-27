@@ -232,7 +232,8 @@ app.get("/u/:user", async (req, res) => {
 });
 
 app.get("/me", (req, res) => {
-  let me = 
+  let me = req.session.username;
+  res.redirect(`/u/${me}`);
 })
 
 app.get("/projectinfo/:projectname", async (req, res) => {
