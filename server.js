@@ -218,8 +218,8 @@ app.get("/u/:user", async (req, res) => {
     console.log("Logged in!");
     res.render("user", {
       projects: projects,
-      username: req.session.username,
-      user: req.params.user
+      username: req.params.user,
+      user: req.session.username
     });
   } else {
     console.log("Not logged in!")
