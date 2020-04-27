@@ -7,6 +7,10 @@ const createEditor = (editor, options = {}) => {
   return e;
 };
 
+document.getElementById("status").onclick = function() {
+  this.style.dislay = "none";
+}
+
 // fetch("/projectname", {
 //   headers: { "Content-Type": "application/json" }
 // })

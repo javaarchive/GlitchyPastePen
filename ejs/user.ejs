@@ -19,10 +19,13 @@
       margin-top: 30px;
     }
 
-    #user-header {
-      border-bottom: 1px solid black;
+    header {
+      margin-left: 0px;
+      padding-left: 20px;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #DCDCDC;
       left: 0px;
-      margin: 0px;
     }
     
     #main {
@@ -55,14 +58,24 @@
     img {
       cursor: pointer;
     }
+    
+    #new {
+      float: right;
+      margin-right: 20px;
+      margin-top: 80px;
+    }
   </style>
 </head>
 <body>  
-  <header id='user-header'>
-    <h1>
-      <%= username %>
-    </h1>
-  </header><br />
+  <header>
+    <a href="/"><img src="https://cdn.khaleelgibran.com/img/glitchypastepen.png" height="100px"></a>
+    <button id="new">
+      New Project
+    </button>
+  </header>
+  <h1>
+    <%= username %>
+  </h1>
   <div id = "main">
     <i>YOUR PROJECTS</i><br /><br />
     <% for (var project of projects) { %>
