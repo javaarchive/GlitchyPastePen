@@ -58,7 +58,6 @@
   <body style="background-color:#1f2430;">
     <header>
       <span id="status">
-        
       </span>
       <p class="p-title">
         <i>PROJECT NAME</i>
@@ -121,7 +120,7 @@
           .then(response => response.json())
           .then(data => {
             if (data.status === 200) {
-              
+              document.getElementById("status").innerHTML = "Your project has been successfully deployed <br />at https://glitchypastepen.glitch.me/p/" +
             }
           });
       }

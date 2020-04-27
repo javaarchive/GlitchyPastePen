@@ -169,7 +169,7 @@ app.get("/editor/:project", function(request, response) {
 app.post("/deploy", async function(request, response) {
   let projectname = request.body.name;
   let filename = request.body.name + ".html";
-  fs.writeFile(filename, request.body.code, function(err) {
+  fs.writeFile("projects/" + filename, request.body.code, function(err) {
     if (err) throw err;
   });
   let projectinfo = { name: projectname, owner: global.theuser };
@@ -186,7 +186,7 @@ app.get("/getCode/:projectname", async (req, res) => {
 
 app.get("/p/:project", function(req, res) {
   let projectname = req.params.project;
-  res.sendFile(__dirname + "/" + projectname + ".html");
+  res.sendFile(__dirname + "/projects/" + projectname + ".html");
 });
 
 app.get("/redirect/loginfail", function(req, res) {
