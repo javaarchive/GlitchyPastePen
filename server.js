@@ -70,7 +70,7 @@ app.get("/signup", async (request, response) => {
 
 app.post("/signup", async (request, response) => {
   var authdata;
-  global.email = request.body.username;
+  global.email = request.body.email;
   var username = request.body.username;
   var password = request.body.password;
   if (username && password && global.email) {
@@ -238,6 +238,10 @@ app.get("/projectinfo/:projectname", async (req, res) => {
   console.log(projectinfo);
   res.send({ name: projectinfo.name, owner: projectinfo.owner });
 });
+
+app.get("/login-new", (req, res) => {
+  res.sendFile(__dirname + "/views/login-new.html");
+})
 // listen for requests :)
 const listener = app.listen(process.env.PORT, () => {
   console.log("Your app is listening on port " + listener.address().port);

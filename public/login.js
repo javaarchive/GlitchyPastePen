@@ -13,11 +13,11 @@ const login = () => {
     .then(data => {
       
       if (data.redirect == "signup") {
-        window.location.href = "https://pasteglitchpen.glitch.me/signup";
+        window.location.href = "https://glitchypastepen.glitch.me/signup";
       } else if (data.redirect == "editor") {
-        window.location.href = "https://pasteglitchpen.glitch.me/editor/new";
+        window.location.href = "https://glitchypastepen.glitch.me/editor/new";
       } else if (data.redirect == "/") {
-        window.location.href = "https://pasteglitchpen.glitch.me/redirect/loginfail";
+        window.location.href = "https://glitchypastepen.glitch.me/redirect/loginfail";
       } else {
         console.log("yo!")
       }
