@@ -1,4 +1,4 @@
-@import url('https://rsms.me/inter/inter.css');
+@import url("https://rsms.me/inter/inter.css");
 
 body {
   --fore: black;
@@ -8,6 +8,19 @@ body {
   font-family: "Inter", "Helvetica", "Arial", sans-serif;
   margin-top: 30px;
   margin: 0px;
+}
+
+.main {
+  font-size: calc(100vw / 12.8);
+  font-weight: 740;
+}
+
+#intro {
+  margin-left: 40px;
+}
+
+a {
+  color: black;
 }
 
 #editor {
@@ -168,7 +181,7 @@ footer {
 
 .i {
   color: red;
-  font-size: 120%
+  font-size: 120%;
 }
 
 a {
@@ -220,7 +233,6 @@ i.fa {
   box-shadow: 0px 0px 2px #888;
   background-color: red;
   padding: 0.5em 0.6em;
-
 }
 
 i.fas {
@@ -229,7 +241,6 @@ i.fas {
   box-shadow: 0px 0px 2px #888;
   background-color: purple;
   padding: 0.5em 0.6em;
-
 }
 
 i.fab {
@@ -237,5 +248,25 @@ i.fab {
   border-radius: 60px;
   box-shadow: 0px 0px 2px #888;
   padding: 0.5em 0.6em;
+}
 
+#logout {
+  float: right;
+  display: inline-block;
+  background-color: white;
+  border: none;
+  color: black;
+  padding-top: 10px;
+  padding-left: 20px;
+  padding-bottom: 10px;
+  padding-right: 20px;
+  cursor: pointer;
+  margin-right: 20px;
+  border-radius: 9px;
+}
+
+.desc {
+  margin-left: 15%;
+  margin-right: 15%;
+  font-size: calc(35vw / 12.8);
 }

@@ -15,6 +15,7 @@ var bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.json());
+app.use(require('express-status-monitor')());
 
 const cors = require("cors");
 app.use(cors());
@@ -60,9 +61,9 @@ app.get("/", async (request, response) => {
   }
 });
 
-// app.get("/login", (request, response) => {
-//   response.sendFile(__dirname + "/views/login.html");
-// });
+app.get("/login", (request, response) => {
+   response.sendFile(__dirname + "/views/login.html");
+});
 
 app.get("/signup", async (request, response) => {
   response.sendFile(__dirname + "/views/signup.html");
@@ -246,7 +247,12 @@ app.get("/projectinfo/:projectname", async (req, res) => {
 
 app.get("/login-new", (req, res) => {
   res.sendFile(__dirname + "/views/login-new.html");
-})
+});
+
+app.get("/logout", (req, res) => {
+  req.session.loggedin = false;
+  res.redirect("/");
+});
 // listen for requests :)
 const listener = app.listen(process.env.PORT, () => {
   console.log("Your app is listening on port " + listener.address().port);
