@@ -1,6 +1,7 @@
 
 <head>
   <title><%= username %></title>
+  <script src="https://togetherjs.com/togetherjs-min.js"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
     
@@ -71,7 +72,7 @@
       color: white;
     }
     
-    #new {
+    .new {
       background-color: white;
       padding-top: 10px;
       padding-right: 20px;
@@ -88,11 +89,11 @@
       margin-right: 30px;
     }
     
-    #new a {
+    .new a {
       color: black !important;
     }
 
-    #new:hover {
+    .new:hover {
       background-color: yellow;
       color: black;
       transition: 1s ease;
@@ -108,7 +109,11 @@
 <body>  
   <header>
     <a href="/"><img src="https://cdn.khaleelgibran.com/img/glitchypastepen.png" height="100px"></a>
-    <button id="new">
+    <button class="new">
+      <a href="/logout">logout</a>
+    </button>
+    <button class="new" onclick="TogetherJS(this); return false;">Stream to friends!</button>
+    <button class="new">
       <a href="/editor/new">NEW PROJECT</a>
     </button>
   </header>
@@ -135,7 +140,6 @@
       .then(res => res.json() )
       .then(data => {
         console.log(data);
-        window.location.reload();
       })
     }  
   </script>

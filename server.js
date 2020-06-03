@@ -22,6 +22,9 @@ app.use(cors());
 
 const path = require("path");
 
+var mkdirp = require('mkdirp');
+var rimraf = require("rimraf");
+
 const endb = require("endb");
 var user = new endb("sqlite://user.db");
 var project = new endb("sqlite://project.db");
@@ -39,7 +42,7 @@ async function clear() {
 }
 
 // clear();
-all();
+// all();
 
 app.use(express.static("public"));
 app.set("views", path.join(__dirname, "ejs"));
@@ -57,13 +60,16 @@ function checkHttps(req, res, next){
   // protocol check, if http, redirect to https
   
   if(req.get('X-Forwarded-Proto').indexOf("https")!=-1){
+    console.log("https, yo")
     return next()
   } else {
+    console.log("just http")
     res.redirect('https://' + req.hostname + req.url);
   }
 }
 
-app.all('*', checkHttps);
+app.all('*', checkHttps)
+
 app.get("/", async (request, response) => {
   if (request.session.loggedin) {
     response.redirect("/u/" + request.session.username);
@@ -145,12 +151,21 @@ app.get("/editor/new", async (req, res) => {
     } catch (err) {
       console.error(err);
     }
+    
+    mkdirp.sync(`projects/${projectname}`);
+    
     // let data = { name: name };
-    fs.writeFile(__dirname + `/projects/${projectname}.html`, "", function(
+    fs.writeFile(__dirname + `/projects/${projectname}/index.html`, "", function(
       err
     ) {
       if (err) throw err;
     });
+    fs.writeFile(__dirname + `/projects/${projectname}/style.css`, "", function(err) {
+      if (err) throw err;
+    });
+    fs.writeFile(__dirname + `/projects/${projectname}/script.js`, "", function(err) {
+      if (err) throw err;
+    })
     let projectinfo = { name: projectname, owner: global.theuser };
     let setinfo = await project.set(projectname, projectinfo);
     res.redirect(`/editor/${projectname}`);
@@ -188,7 +203,13 @@ app.post("/deploy", async function(request, response) {
   
   let projectname = request.body.name;
   let filename = request.body.name + ".html";
-  fs.writeFile("projects/" + filename, request.body.code, function(err) {
+  fs.writeFile("projects/" + projectname + "/index.html", request.body.code, function(err) {
+    if (err) throw err;
+  });
+  fs.writeFile("projects/" + projectname + "/style.css", request.body.css, function(err) {
+    if (err) throw err;
+  });
+  fs.writeFile("projects/" + projectname + "/script.js", request.body.js, function(err) {
     if (err) throw err;
   });
   let projectinfo = { name: projectname, owner: global.theuser };
@@ -198,14 +219,29 @@ app.post("/deploy", async function(request, response) {
 
 app.get("/getCode/:projectname", async (req, res) => {
   let projectname = req.params.projectname;
-  fs.readFile(`projects/${projectname}.html`, "utf8", function(err, data) {
-    res.send({ code: data });
-  });
+  // fs.readFile(`projects/${projectname}/index.html`, "utf8", function(err, data) {
+  //   res.send({ code: data });
+  // });
+  let code = fs.readFileSync(`projects/${projectname}/index.html`, "utf-8");
+  let css = fs.readFileSync(`projects/${projectname}/style.css`, "utf-8");
+  let js = fs.readFileSync(`projects/${projectname}/script.js`, "utf-8");
+  res.send({ code: code, css: css, js: js })
 });
 
 app.get("/p/:project", function(req, res) {
   let projectname = req.params.project;
-  res.sendFile(__dirname + "/projects/" + projectname + ".html");
+  res.sendFile(__dirname + "/projects/" + projectname + "/index.html");
+});
+
+
+app.get("/p/:project/style.css", function(req, res) {
+  let projectname = req.params.project;
+  res.sendFile(__dirname + "/projects/" + projectname + "/style.css")
+});
+
+app.get("/p/:project/script.js", function(req, res) {
+  let projectname = req.params.project;
+  res.sendFile(__dirname + "/projects/" + projectname + "/script.js")
 });
 
 app.get("/redirect/loginfail", function(req, res) {
@@ -216,6 +252,7 @@ app.get("/delete/:project", async (req, res) => {
   let projectinfo = await project.get(req.params.project);
   if (req.session.loggedin && req.session.username === projectinfo.owner) {
     await project.delete(req.params.project);
+    rimraf.sync(`/projects/{req.params.project}`);
     console.log("Authorised!");
     res.sendStatus(200);
   } else {
