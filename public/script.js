@@ -1,19 +1,17 @@
-const createEditor = (editor, options = {}) => {
-  const e = new document.CodeMirror.fromTextArea(editor, {
-    lineNumbers: true,
-    viewportMargin: Infinity,
-    ...options
-  });
-  return e;
-};
+function html() {
+  editor.setSession("html");
+}
+
+function js() {
+  editor.setSession("js");
+}
+
+function css() {
+  editor.setSession("css");
+}
 
 function dismiss() {
   document.getElementById("status").style.display = "none";
-}
-
-function changename() {
-  console.log(document.getElementById("project-name").value);
-  
 }
 
 // fetch("/projectname", {

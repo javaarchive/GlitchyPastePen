@@ -24,10 +24,6 @@ a {
   color: black;
 }
 
-#editor {
-  height: 100%;
-}
-
 header {
   margin-left: 0px;
   padding-left: 20px;
@@ -40,7 +36,7 @@ header {
 #project-name {
   margin-left: 20px;
   margin-top: 0px;
-  background-color: #1f2430;
+  background-color: #272822;
   border: none;
   color: white;
   font-family: "Inter", "Helvetica", "Arial", sans-serif;
@@ -158,10 +154,19 @@ pre {
 
 #deploy {
   border: none;
-  background-color: #1f2430;
+  background-color: rgba(0,0,0,0);
   display: inline-block;
   float: right;
   cursor: pointer;
+}
+
+.deploy {
+  background-color: rgba(0,0,0,0);
+  display: inline-block;
+  float: right;
+  cursor: pointer; 
+  border: 1px dashed white;
+  margin-right: 20px;
 }
 
 .signup-link {
@@ -327,4 +332,8 @@ button:hover {
   margin-left: 20px;
   width: fit-content;
   border-radius: 3px;
+}
+
+.projectname {
+  color: white;
 }

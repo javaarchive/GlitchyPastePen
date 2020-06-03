@@ -17,96 +17,138 @@
 
     <!-- import the webpage's stylesheet -->
     <link rel="stylesheet" href="/style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/codemirror@5.52.2/lib/codemirror.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/codemirror@5.52.2/theme/ayu-mirage.css"
-    />
-    <link rel="stylesheet" href="/codemirror-theme.css" />
-    <link rel="stylesheet" href="https://codemirror.net/addon/lint/lint.css" />
-    <script src="https://cdn.jsdelivr.net/npm/codemirror@5.52.2/lib/codemirror.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/codemirror@5.52.2/mode/javascript/javascript.js"></script>
-    <script src="https://codemirror.net/mode/javascript/javascript.js"></script>
-    <script src="https://codemirror.net/mode/css/css.js"></script>
-    <script src="https://codemirror.net/mode/htmlmixed/htmlmixed.js"></script>
-    <script src="https://codemirror.net/mode/xml/xml.js"></script>
-    <script src="https://codemirror.net/addon/lint/lint.js"></script>
-    <script src="https://codemirror.net/addon/lint/javascript-lint.js"></script>
-    <script src="https://codemirror.net/addon/lint/json-lint.js"></script>
-    <script src="https://codemirror.net/addon/lint/html-lint.js"></script>
-    <script src="https://ajax.aspnetcdn.com/ajax/jshint/r07/jshint.js"></script>
-    <script src="https://rawgithub.com/zaach/jsonlint/79b553fb65c192add9066da64043458981b3972b/lib/jsonlint.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/addon/lint/css-lint.min.js"></script>
-    <script src="https://codemirror.net/addon/edit/closetag.js"></script>
-    <script src="https://codemirror.net/addon/edit/closebrackets.js"></script>
-    <script src="https://codemirror.net/addon/edit/matchtags.js"></script>
-    <script src="https://codemirror.net/addon/edit/matchbrackets.js"></script>
-    <script src="https://codemirror.net/addon/selection/active-line.js"></script>
-    <script src="https://codemirror.net/addon/fold/foldcode.js"></script>
-    <script src="https://codemirror.net/addon/fold/foldgutter.js"></script>
-    <script src="https://codemirror.net/addon/fold/brace-fold.js"></script>
-    <script src="https://codemirror.net/addon/fold/xml-fold.js"></script>
-    <script src="https://htmlhint.com/js/htmlhint.js"></script>
-    <script src="https://codemirror.net/addon/fold/comment-fold.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/eruda"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/ace.js"
+      type="text/javascript"
+      charset="utf-8"
+    ></script>
+
     <script src="/script.js"></script>
+    <script src="https://togetherjs.com/togetherjs-min.js"></script>
   </head>
-  <body style="background-color:#1f2430;">
-    <header>
+  <body style="background-color:#272822;">
+    <header style="border-bottom: 0px solid black !important;">
       <span id="status"> </span>
+      <!-- <button onclick="TogetherJS(this); return false;">Invite friends!</button> -->
       <button id="logout">
         <a href="/logout">Log out</a>
       </button>
+
       <button style="float:right;margin-right:10px;">
         <a href="/me">My Projects</a>
       </button>
+      
+      <button style="float:right;margin-right:10px;" onclick="TogetherJS(this); return false;">Invite friends!</button>
+
       <p class="p-title">
         <i>PROJECT NAME</i>
       </p>
       <input type="text" id="project-name" oninput="changename()" />
       <br />
-      <div id="option">
-        <img src="https://cdn.glitch.com/622554c6-3118-4838-8819-e003b9525f5d%2Ftick%20(1).svg?v=1590470313515" style="width:30px;display:inline-block;cursor:pointer;display: inline-block;cursor: pointer;width: 40px;margin-top: auto;vertical-align: text-bottom;">
-        <img src="https://cdn.glitch.com/622554c6-3118-4838-8819-e003b9525f5d%2Fcancel.svg?v=1590469975627" style="width:30px;display:inline-block;cursor:pointer;" onclick="cancel()">
-      </div>
       <p class="empty">
         <a href="" class="owner"></a>
       </p>
-      <button id="deploy" onclick="deploy();" title="Save code!">
+      <button id="html" onclick="editor.setSession(html);">
+        index.html
+      </button>
+      <button id="js" onclick="editor.setSession(js);">
+        script.js
+      </button>
+      <button is="css" onclick="editor.setSession(css);">
+        style.css
+      </button>
+
+      <button class="deploy" onclick="beautify()" title="Beautify code!">
+        <img
+          src="https://cdn.glitch.com/622554c6-3118-4838-8819-e003b9525f5d%2Fbrush.svg?v=1591166776963"
+          height="40px"
+        />
+      </button>
+      <button class="deploy" onclick="deploy();" title="Save code!">
         <img
           src="https://img.icons8.com/cotton/100/000000/save.png"
           height="40px"
         />
       </button>
+      <p style="color:white">
+          To use the script files and stylesheets in your
+          <code>index.html</code> code, make sure to set the source pointing
+          towards <code>/p/<span class="projectname"></span>/style.css</code> or
+          <code>/p/<span class="projectname"></span>/script.js</code>.
+        </p>
     </header>
     <br /><br />
-    <textarea id="editor" oninput="save();"></textarea>
+    <style type="text/css">
+      #editor {
+        position: absolute;
+        top: 240px;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 2;
+      }
+    </style>
 
+    <div id="editor"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/ext-beautify.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/ext-language_tools.min.js"></script>
     <script>
-      document.CodeMirror = CodeMirror;
-      var editor = createEditor(document.getElementById("editor"), {
-        lineNumbers: true,
-        mode: "htmlmixed",
-        htmlMode: true,
-        lint: true,
-        theme: "ayu-mirage"
+      var editor = ace.edit("editor");
+      editor.setTheme("ace/theme/monokai");
+      editor.session.setMode("ace/mode/html");
+      
+      ace.require("ace/ext/language_tools");
+      // ace.createEditSession("html", "ace/mode/html");
+      // ace.createEditSession("js", "ace/mode/javascript");
+      // ace.createEditSession("css", "ace/mode/css")
+
+      // var EditSession = require("ace/edit_session").EditSession;
+      // var html = new EditSession("html")
+      // var js = new EditSession("js");
+      // var css = new EditSession("css");
+
+      // editor.setSession("html");
+
+      function beautify() {
+        var beautify = ace.require("ace/ext/beautify");
+        beautify.beautify(editor.session);
+      }
+
+      editor.setOptions({
+        fontSize: "1.5vw",
+        enableBasicAutocompletion: true,
+        autoScrollEditorIntoView: true
       });
-      editor.setSize("100%", "100%");
+
+      var EditSession = require("ace/edit_session").EditSession;
+
+      var html = new EditSession("<html></html>", "ace/mode/html");
+      var js = new EditSession("console.log('//hi')", "ace/mode/javascript");
+      var css = new EditSession("body { color: red; }", "ace/mode/css");
+      // and then to load document into editor, just call
+      editor.setSession(html);
+      js.setOverwrite(true);
+      html.setOverwrite(true);
+      css.setOverwrite(true);
 
       let projecturl = window.location.href;
       let projectname = projecturl.slice(41);
       document.getElementById("project-name").value = projectname;
+      document.getElementsByClassName("projectname")[0].innerText = projectname;
+      document.getElementsByClassName("projectname")[1].innerText = projectname;
 
       let name = document.getElementById("project-name").value;
       let path = "/getCode/" + name;
       fetch(path)
         .then(response => response.json())
         .then(data => {
-          editor.setValue(data.code);
+          // editor.setValue(data.code);
+          console.log(data.css);
+          console.log(data.js);
+          html.setValue(data.code);
+          js.setValue(data.js);
+          css.setValue(data.css);
         });
 
       fetch("/projectinfo/" + projectname)
@@ -118,9 +160,11 @@
         });
 
       function deploy() {
-        let code = editor.getValue();
+        let code = html.getValue();
+        let js2 = js.getValue();
+        let css2 = css.getValue();
         let name = document.getElementById("project-name").value;
-        let content = { code: code, name: name };
+        let content = { code: code, js: js2, css: css2, name: name };
 
         fetch("/deploy", {
           method: "post",
@@ -137,8 +181,11 @@
                 this.style.display = "none";
               };
               document.getElementById("status").innerHTML =
-                "Your project has been successfully deployed <br />at <a href=\"/p/" + name + "\">https://glitchypastepen.glitch.me/p/" +
-                name + "</a>";
+                'Your project has been successfully deployed <br />at <a href="/p/' +
+                name +
+                '">https://glitchypastepen.glitch.me/p/' +
+                name +
+                "</a>";
             } else {
               document.getElementById("status").style.display = "block";
               document.getElementById("status").style.backgroundColor = "red";
@@ -147,10 +194,8 @@
             }
           });
       }
-      
-      function cancel() {
-        
-      }
+
+      function cancel() {}
     </script>
   </body>
 </html>
